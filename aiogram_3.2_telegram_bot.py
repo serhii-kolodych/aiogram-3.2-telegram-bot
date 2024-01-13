@@ -19,10 +19,13 @@ bot = Bot(TOKEN)
 # Create a Dispatcher for handling incoming messages and commands
 dp = Dispatcher()
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', filename='logs_NAME.log')
+logger = logging.getLogger('logs_NAME')
 
 # Define a message handler for the /start command
 @dp.message(CommandStart())
 async def handle_start(message: types.Message):
+    logger.info("--/START command pressed.")
     # Send a welcome message with the user's ID
     await message.answer(text=f"👋 user ID: {message.from_user.id}")
 
